@@ -3,22 +3,54 @@ import { experimental_extendTheme as extendTheme} from '@mui/material/styles';
 
 // Create a theme instance.
 const theme = extendTheme({
+    trello:{
+      appBarHeight: '48px',
+      boardBarHeight: '58px'
+    },
+
     colorSchemes: {
       light: {
         palette: {
-          // primary: {
-          //   main: '#ff5252',
-          // },
+          primary: {
+            main: '#f48fb1', // Màu xanh lam chủ đạo
+            contrastText: '#ffffff', // Văn bản trắng trên màu nền xanh
+          },
+          secondary: {
+            main: '#f50057', // Màu hồng đậm
+            contrastText: '#ffffff',
+          },
+          background: {
+            default: '#f5f5f5', // Màu nền xám nhạt
+            paper: '#ffffff', // Màu trắng cho card và container
+          },
+          text: {
+            primary: '#333333', // Văn bản đen xám
+            secondary: '#666666', // Văn bản xám nhạt hơn
+          },
         },
       },
       dark: {
         palette: {
-          // primary: {
-          //   main: '#000',
-          // },
+          primary: {
+            main: '#90caf9', // Màu xanh nhạt
+            contrastText: '#000000', // Văn bản đen trên màu nền xanh nhạt
+          },
+          secondary: {
+            main: '#f48fb1', // Màu hồng nhạt
+            contrastText: '#000000',
+          },
+          background: {
+            default: '#121212', // Màu nền xám đậm
+            paper: '#1e1e1e', // Màu đen nhạt hơn cho card và container
+          },
+          text: {
+            primary: '#ffffff', // Văn bản trắng
+            secondary: '#bbbbbb', // Văn bản xám nhạt
+          },
         },
       },
     },
+    
   });
 
 export default theme;
