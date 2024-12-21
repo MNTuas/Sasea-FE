@@ -44,10 +44,10 @@ function AppBar(){
 
               <Tooltip title="Notification">
                 <Badge color="secondary" variant="dot" sx={{cursor: 'pointor'}} >
-                  <NotificationsNoneIcon />
+                  <NotificationsNoneIcon sx={{ color: 'primary.main'}} />
                 </Badge>
               </Tooltip>
-              <HelpOutlineIcon />
+              <HelpOutlineIcon sx={{ color: 'primary.main'}} />
               <Profiles />
             </Box>
            

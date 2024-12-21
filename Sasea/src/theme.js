@@ -1,4 +1,4 @@
-import { experimental_extendTheme as extendTheme} from '@mui/material/styles';
+import { experimental_extendTheme as extendTheme } from '@mui/material/styles';
 
 
 // Create a theme instance.
@@ -50,7 +50,35 @@ const theme = extendTheme({
         },
       },
     },
-    
+    components: {
+      // Name of the component
+      MuiButton: {
+        styleOverrides: {
+          // Name of the slot
+          root: {
+            textTransform:'none'
+          },
+        },
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: ({theme}) => {
+            return {
+              colors: theme.palette.primary.secondary,
+              fontSize: '0.875rem',
+              '.MuiOutlinedInput-notchedOutline':{
+                BorderColor: theme.palette.primary.light
+              },
+              '&:hover':{
+                '.MuiOutlinedInput-notchedOutline':{
+                BorderColor: theme.palette.primary.main
+              },
+              }
+            }
+          }
+        },
+      },
+    },
   });
 
 export default theme;
