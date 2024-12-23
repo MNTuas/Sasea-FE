@@ -20,7 +20,7 @@ const theme = extendTheme({
           contrastText: '#ffffff',
         },
         background: {
-          default: '#f5f5f5', // Màu nền xám nhạt
+          default: 'white', // Màu nền xám nhạt
           paper: '#ffffff', // Màu trắng cho card và container
         },
         text: {
