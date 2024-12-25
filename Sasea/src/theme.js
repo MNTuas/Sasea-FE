@@ -11,51 +11,49 @@ const theme = extendTheme({
     boardBarHeight: BOARD_BAR_HEIGHT,
     boardContentHeight: BOARDCONTENT_HEIGHT,
   },
-
   colorSchemes: {
     light: {
       palette: {
         primary: {
-          main: '#f48fb1', // Màu xanh lam chủ đạo
-          contrastText: '#ffffff', // Văn bản trắng trên màu nền xanh
+          main: '#6200ea', // A deep purple for primary actions
+          contrastText: '#ffffff', // White text for contrast
         },
         secondary: {
-          main: '#f50057', // Màu hồng đậm
-          contrastText: '#ffffff',
+          main: '#03dac6', // A soft teal for secondary actions
+          contrastText: '#000000', // Black text for contrast
         },
         background: {
-          default: 'white', // Màu nền xám nhạt
-          paper: '#ffffff', // Màu trắng cho card và container
+          default: '#fafafa', // A very light gray background for a soft, clean look
+          paper: '#ffffff', // White paper background
         },
         text: {
-          primary: '#333333', // Văn bản đen xám
-          secondary: '#666666', // Văn bản xám nhạt hơn
+          primary: '#212121', // Dark gray text for better readability
+          secondary: '#757575', // Lighter gray for secondary text
         },
       },
     },
     dark: {
       palette: {
         primary: {
-          main: '#90caf9', // Màu xanh nhạt
-          contrastText: '#000000', // Văn bản đen trên màu nền xanh nhạt
+          main: '#bb86fc', // Soft purple for primary actions
+          contrastText: '#000000', // Black text for contrast in dark mode
         },
-        secondary: {    
-          main: '#f48fb1', // Màu hồng nhạt
-          contrastText: '#000000',
+        secondary: {
+          main: '#03dac6', // Same soft teal for consistency
+          contrastText: '#000000', // Black text for secondary buttons
         },
         background: {
-          default: '#121212', // Màu nền xám đậm
-          paper: '#1e1e1e', // Màu đen nhạt hơn cho card và container
+          default: '#121212', // Very dark background for dark mode
+          paper: '#1e1e1e', // Slightly lighter paper background for contrast
         },
         text: {
-          primary: '#ffffff', // Văn bản trắng
-          secondary: '#bbbbbb', // Văn bản xám nhạt
+          primary: '#ffffff', // White text for primary text on dark backgrounds
+          secondary: '#bbbbbb', // Light gray text for secondary text
         },
       },
     },
   },
   components: {
-    // Name of the component
     MuiCssBaseline: {
       styleOverrides: {
         body: {
@@ -64,11 +62,11 @@ const theme = extendTheme({
             height: '8px',
           },
           '*::-webkit-scrollbar-thumb': {
-            backgroundColor: 'rgba(236, 21, 21, 0.2)',
+            backgroundColor: '#bb86fc',
             borderRadius: '4px',
           },
           '*::-webkit-scrollbar-thumb:hover': {
-            backgroundColor: 'rgba(69, 12, 12, 0.2)',
+            backgroundColor: '#6200ea',
             borderRadius: '4px',
           },
         },
@@ -76,9 +74,8 @@ const theme = extendTheme({
     },
     MuiButton: {
       styleOverrides: {
-        // Name of the slot
         root: {
-          textTransform: 'none'
+          textTransform: 'none',
         },
       },
     },
@@ -87,32 +84,32 @@ const theme = extendTheme({
         root: ({ theme }) => ({
           color: theme.palette.primary.main,
           fontSize: '0.875rem',
-        })
+        }),
       },
     },
     MuiTypography: {
       styleOverrides: {
-          root: {
-           '&.MuiTypography-body1': { fontSize: '0.875rem' },
-          }
+        root: {
+          '&.MuiTypography-body1': {
+            fontSize: '0.875rem',
+          },
+        },
       },
     },
     MuiOutlinedInput: {
       styleOverrides: {
-        root: ({ theme }) => {
-          return {
-            color: theme.palette.primary.main,
-            fontSize: '0.875rem',
+        root: ({ theme }) => ({
+          color: theme.palette.primary.main,
+          fontSize: '0.875rem',
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: theme.palette.primary.light,
+          },
+          '&:hover': {
             '.MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.primary.light
+              borderColor: theme.palette.primary.main,
             },
-            '&:hover': {
-              '.MuiOutlinedInput-notchedOutline': {
-                borderColor: theme.palette.primary.main
-              },
-            }
-          }
-        }
+          },
+        }),
       },
     },
   },

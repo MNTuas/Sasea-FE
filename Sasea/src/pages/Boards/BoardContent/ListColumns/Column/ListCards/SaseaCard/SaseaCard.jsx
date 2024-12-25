@@ -17,7 +17,11 @@ function SaseaCard({ temporaryHideMedia }) {
           cursor: "pointer",
           boxShadow: "0 1px 1px rgb(0 0 0 / 10%), 0 1px 1px rgb(0 0 0 / 10%)",
           borderRadius: "8px",
-          overflow: "unset", // Ensures consistent border-radius visuals
+          overflow: "unset",
+          border: '0.3px solid transparent', // Set a transparent border initially
+      '&:hover': {
+        borderColor: (theme) => (theme.palette.mode === "dark" ? "white" : "black"), 
+      },
         }}
       >
         {/* Card Content without image */}
@@ -31,13 +35,18 @@ function SaseaCard({ temporaryHideMedia }) {
 
   return (
     <Card
-      sx={{
-        cursor: "pointer",
-        boxShadow: "0 1px 1px rgb(0 0 0 / 10%), 0 1px 1px rgb(0 0 0 / 10%)",
-        borderRadius: "8px",
-        overflow: "unset", // Ensures consistent border-radius visuals
-      }}
-    >
+    sx={{
+      cursor: "pointer",
+      boxShadow: "0 1px 1px rgb(0 0 0 / 10%), 0 1px 1px rgb(0 0 0 / 10%)",
+      borderRadius: "8px",
+      overflow: "unset",
+      border: '0.3px solid transparent', 
+      '&:hover': {
+        borderColor: (theme) => (theme.palette.mode === "dark" ? "white" : "black"),
+      }, 
+    }}
+  >
+  
       {/* Card Image */}
       <CardMedia
         sx={{
