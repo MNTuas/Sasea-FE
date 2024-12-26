@@ -1,7 +1,7 @@
 import { Box, Tooltip } from "@mui/material"
+import PropTypes from 'prop-types';
 import Chip from '@mui/material/Chip';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import NoEncryptionIcon from '@mui/icons-material/NoEncryption';
 import AddToDriveIcon from '@mui/icons-material/AddToDrive';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import FilterListIcon from '@mui/icons-material/FilterList';
@@ -9,7 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Button from '@mui/material/Button';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
-
+import VpnLockIcon from '@mui/icons-material/VpnLock';
 
 const MENUSTYLE = (theme) => ({
     color: theme.palette.primary.main, 
@@ -20,7 +20,9 @@ const MENUSTYLE = (theme) => ({
     '&:hover': {backgroundColor: theme.palette.background.default} 
 });
 
-function BoardBar(){
+
+function BoardBar({ board }){
+    console.log('Board Data:', board);
     return(
         <Box px={2} sx={{
             width:'100%',
@@ -35,8 +37,8 @@ function BoardBar(){
           }}>
            
               <Box sx={{ display:'flex', alignItems:'center', gap: 2}}>
-                <Chip sx={MENUSTYLE} icon={<DashboardIcon />} label="Sasea Board" clickable />
-                <Chip sx={MENUSTYLE} icon={<NoEncryptionIcon />} label="Public/Private Workplace" clickable />
+                <Chip sx={MENUSTYLE} icon={<DashboardIcon />} label={board?.title} clickable />
+                <Chip sx={MENUSTYLE} icon={<VpnLockIcon />} label= {board?.type} clickable />
                 <Chip sx={MENUSTYLE} icon={<AddToDriveIcon />} label="Add to GoogleDrive" clickable />
                 <Chip sx={MENUSTYLE} icon={<ElectricBoltIcon />} label="Automation" clickable />
                 <Chip sx={MENUSTYLE} icon={<FilterListIcon />} label="Filters" clickable />
@@ -74,5 +76,11 @@ function BoardBar(){
 
     )
 }
+BoardBar.propTypes = {
+   board: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+   }).isRequired
+};
 
 export default BoardBar

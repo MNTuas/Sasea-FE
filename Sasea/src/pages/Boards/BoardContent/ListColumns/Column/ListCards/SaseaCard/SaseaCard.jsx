@@ -7,60 +7,39 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
-function SaseaCard({ temporaryHideMedia }) {
-  if (temporaryHideMedia) {
-    return (
-      <Card
-        sx={{
-          cursor: "pointer",
-          boxShadow: "0 1px 1px rgb(0 0 0 / 10%), 0 1px 1px rgb(0 0 0 / 10%)",
-          borderRadius: "8px",
-          overflow: "unset",
-          border: '0.3px solid transparent', // Set a transparent border initially
-      '&:hover': {
-        borderColor: (theme) => (theme.palette.mode === "dark" ? "white" : "black"), 
-      },
-        }}
-      >
-        {/* Card Content without image */}
-        <CardContent sx={{ p: 1.5 }}>
-          <Typography variant="subtitle1">Cart test</Typography>
-        </CardContent>
-
-      </Card>
-    );
-  }
-
+function SaseaCard({ saseaCard }) {
   return (
     <Card
-    sx={{
-      cursor: "pointer",
-      boxShadow: "0 1px 1px rgb(0 0 0 / 10%), 0 1px 1px rgb(0 0 0 / 10%)",
-      borderRadius: "8px",
-      overflow: "unset",
-      border: '0.3px solid transparent', 
-      '&:hover': {
-        borderColor: (theme) => (theme.palette.mode === "dark" ? "white" : "black"),
-      }, 
-    }}
-  >
-  
-      {/* Card Image */}
-      <CardMedia
-        sx={{
-          height: 140,
-          borderTopLeftRadius: "8px",
-          borderTopRightRadius: "8px",
-        }}
-        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDnTVB4DPJj4VkZqpL90j8KhDwCg-97VO34Q&s"
-        title="Himmel rute"
-      />
+      sx={{
+        cursor: "pointer",
+        boxShadow: "0 1px 1px rgb(0 0 0 / 10%), 0 1px 1px rgb(0 0 0 / 10%)",
+        borderRadius: "8px",
+        overflow: "unset",
+        border: '0.3px solid transparent',
+        '&:hover': {
+          borderColor: (theme) =>
+            theme.palette.mode === "dark" ? "white" : "black",
+        },
+      }}
+    >
+      {/* Card Media */}
+      {saseaCard?.cover && (
+        <CardMedia
+          sx={{
+            height: 140,
+            borderTopLeftRadius: "8px",
+            borderTopRightRadius: "8px",
+          }}
+          image={saseaCard.cover}
+          title={saseaCard.title}
+        />
+      )}
 
       {/* Card Content */}
       <CardContent sx={{ p: 1.5 }}>
-        <Typography variant="subtitle1">Sasea</Typography>
+        <Typography variant="subtitle1">{saseaCard.title}</Typography>
       </CardContent>
 
       {/* Card Actions */}
@@ -71,20 +50,48 @@ function SaseaCard({ temporaryHideMedia }) {
           justifyContent: "flex-start", // Align buttons to the left
         }}
       >
-        <Button size="small" sx={{ textTransform: "none" }} startIcon={<GroupsIcon />}>
-          20
-        </Button>
+        {saseaCard.memberIds?.length > 0 && (
+          <Button
+            size="small"
+            sx={{ textTransform: "none" }}
+            startIcon={<GroupsIcon />}
+          >
+            {saseaCard.memberIds.length}
+          </Button>
+        )}
 
-        <Button size="small" sx={{ textTransform: "none" }} startIcon={<CommentIcon />}>
-          20
-        </Button>
+        {saseaCard.comments?.length > 0 && (
+          <Button
+            size="small"
+            sx={{ textTransform: "none" }}
+            startIcon={<CommentIcon />}
+          >
+            {saseaCard.comments.length}
+          </Button>
+        )}
 
-        <Button size="small" sx={{ textTransform: "none" }} startIcon={<AddLinkIcon />}>
-          20
-        </Button>
+        {saseaCard.attachments?.length > 0 && (
+          <Button
+            size="small"
+            sx={{ textTransform: "none" }}
+            startIcon={<AddLinkIcon />}
+          >
+            {saseaCard.attachments.length}
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
 }
+
+SaseaCard.propTypes = {
+  saseaCard: PropTypes.shape({
+    cover: PropTypes.string,
+    memberIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+    comments: PropTypes.arrayOf(PropTypes.string).isRequired,
+    attachments: PropTypes.arrayOf(PropTypes.string).isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default SaseaCard;

@@ -1,5 +1,6 @@
 
 import AddCardIcon from '@mui/icons-material/AddCard';
+import PropTypes from 'prop-types';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearIcon from '@mui/icons-material/Clear';
 import CloudQueueIcon from '@mui/icons-material/CloudQueue';
@@ -20,7 +21,7 @@ import ListCards from './ListCards/ListCards';
 const COLUMN_HEADER_HEIGHT = 64;
 const COLUMN_FOOTER_HEIGHT = 64;
 
-function Column() {
+function Column({column}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -62,7 +63,7 @@ function Column() {
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 fontSize: '1rem',
-                }}>Column Title</Typography>
+                }}>{column?.title}</Typography>
                 
             
                 <Box>
@@ -100,7 +101,7 @@ function Column() {
             </Box>
                               
             {/* Column Content */}
-            <ListCards />
+            <ListCards cards = {column?.cards} />
                
              
 
@@ -123,5 +124,13 @@ function Column() {
         </Box>
   );
 }
+
+Column.propTypes = {
+   column: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        cards: PropTypes.arrayOf(PropTypes.object).isRequired
+   }).isRequired
+};
+
 
 export default Column;

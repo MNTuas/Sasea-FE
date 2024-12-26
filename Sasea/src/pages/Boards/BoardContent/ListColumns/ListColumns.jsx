@@ -2,8 +2,9 @@ import { Box } from "@mui/material";
 import Column from "./Column/Column";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Button from '@mui/material/Button';
+import PropTypes from 'prop-types';
 
-function ListColumns() {
+function ListColumns({columns}) {
   return (
     <Box sx={{
         bgcolor: 'inherit',
@@ -17,9 +18,9 @@ function ListColumns() {
         }
       }}>
 
-        <Column />
-        <Column />
+        {columns?.map((columm => <Column key={columm.id} column={columm} />))}
 
+        {/* Add new column */}
         <Box sx={{
             minWidth: "284px",
             maxWidth: '200px',
@@ -46,5 +47,9 @@ function ListColumns() {
 </Box>
   );
 }
+ListColumns.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 
 export default ListColumns;

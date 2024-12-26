@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
 import ListColumns from "./ListColumns/ListColumns";
+import PropTypes from 'prop-types';
 
 
-function BoardContent() {
+
+function BoardContent({ board }) {
   return (
     <Box
       sx={{
@@ -13,10 +15,15 @@ function BoardContent() {
         p:'5px 0',
       }}
     >
-      <ListColumns />
+      <ListColumns columns ={board?.columns} />
       
     </Box>
   );
 }
 
+BoardContent.propTypes = {
+   board: PropTypes.shape({
+        columns: PropTypes.arrayOf(PropTypes.object).isRequired
+   }).isRequired
+};
 export default BoardContent;

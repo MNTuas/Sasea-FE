@@ -33,7 +33,7 @@ function Profiles() {
             aria-expanded={open ? 'true' : undefined}
           >
             <Avatar sx={{ width: 32, height: 32 }} 
-                src='https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-1/460444778_2246016819096224_360879061239387438_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0ecb9b&_nc_ohc=74nCs8XAIksQ7kNvgEx3RT-&_nc_zt=24&_nc_ht=scontent.fsgn5-5.fna&_nc_gid=AjDcx0get3qlQ9T7NaaX2pr&oh=00_AYBN76H2TwqBPUzo7PpoERrZnnYghn-6zwlHTx7PSgQeSw&oe=676981F4'
+                src='https://avatars.githubusercontent.com/u/146855099?v=4'
             />
 
           </IconButton>

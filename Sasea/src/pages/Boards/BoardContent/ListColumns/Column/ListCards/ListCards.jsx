@@ -1,11 +1,12 @@
 
 import Box from '@mui/material/Box';
 import SaseaCard from './SaseaCard/SaseaCard';
+import PropTypes from 'prop-types';
 
 const COLUMN_HEADER_HEIGHT = 64;
 const COLUMN_FOOTER_HEIGHT = 64;
 
-function ListCards() {
+function ListCards({cards}) {
   return (
     <Box
         sx={{
@@ -20,19 +21,14 @@ function ListCards() {
                                             - ${COLUMN_HEADER_HEIGHT} - ${COLUMN_FOOTER_HEIGHT})`,
         }}>
                      
-        <SaseaCard />
-        <SaseaCard temporaryHideMedia />
-        <SaseaCard temporaryHideMedia />
-        <SaseaCard temporaryHideMedia />
-        <SaseaCard temporaryHideMedia />
-        <SaseaCard temporaryHideMedia />
-        <SaseaCard temporaryHideMedia />
-        <SaseaCard temporaryHideMedia />
-        <SaseaCard temporaryHideMedia />
-        <SaseaCard temporaryHideMedia />
+       {cards?.map((card => <SaseaCard key={card.id} saseaCard={card} />))} 
 
     </Box>
   );
 }
+
+ListCards.propTypes = {
+  cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ListCards;
