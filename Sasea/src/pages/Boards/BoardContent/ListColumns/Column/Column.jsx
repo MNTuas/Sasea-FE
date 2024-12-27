@@ -18,11 +18,24 @@ import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import ListCards from './ListCards/ListCards';
 import mapOrder from '~/utils/sort';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 const COLUMN_HEADER_HEIGHT = 64;
 const COLUMN_FOOTER_HEIGHT = 64;
 
 function Column({column}) {
+
+    const { attributes, listeners, setNodeRef, transform, transition,} = useSortable({
+        id: column._id,
+        data: { ...column },
+    });
+      
+    const dndkitColumnStyles = {
+        transform: CSS.Translate.toString(transform),
+        transition,
+    };
+
     const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
     
     const [anchorEl, setAnchorEl] = useState(null);
@@ -39,6 +52,10 @@ function Column({column}) {
   return (
               
         <Box
+            ref={setNodeRef}
+            style={dndkitColumnStyles}
+            {...attributes}
+            {...listeners}
             sx={{
                 minWidth: "284px",
                 maxWidth: "500px",
@@ -130,7 +147,8 @@ Column.propTypes = {
    column: PropTypes.shape({
         title: PropTypes.string.isRequired,
         cards: PropTypes.arrayOf(PropTypes.object).isRequired,
-        cardOrderIds: PropTypes.arrayOf(PropTypes.string).isRequired
+        cardOrderIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+        _id: PropTypes.string.isRequired
    }).isRequired
 };
 
