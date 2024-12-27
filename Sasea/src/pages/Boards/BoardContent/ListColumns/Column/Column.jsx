@@ -17,21 +17,24 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import ListCards from './ListCards/ListCards';
+import mapOrder from '~/utils/sort';
 
 const COLUMN_HEADER_HEIGHT = 64;
 const COLUMN_FOOTER_HEIGHT = 64;
 
 function Column({column}) {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+    const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
+    
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
   return (
               
@@ -101,10 +104,8 @@ function Column({column}) {
             </Box>
                               
             {/* Column Content */}
-            <ListCards cards = {column?.cards} />
+            <ListCards cards = {orderedCards} />
                
-             
-
             {/* Column Footer */}                   
             <Box
                 sx={{
@@ -128,7 +129,8 @@ function Column({column}) {
 Column.propTypes = {
    column: PropTypes.shape({
         title: PropTypes.string.isRequired,
-        cards: PropTypes.arrayOf(PropTypes.object).isRequired
+        cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+        cardOrderIds: PropTypes.arrayOf(PropTypes.string).isRequired
    }).isRequired
 };
 
